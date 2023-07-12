@@ -1,5 +1,3 @@
-
-
 const Buttons = ({ icon, text }: { icon: React.ReactNode; text: string }) => (
   <div className="flex flex-col items-center">
     {icon}

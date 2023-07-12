@@ -4,4 +4,5 @@ const SpeedBadge = ({ value, unit }: { value: number; unit: string }) => (
     <p className="speed-unit text-xs font-normal">{unit}</p>
   </div>
 );
+
 export default SpeedBadge;
