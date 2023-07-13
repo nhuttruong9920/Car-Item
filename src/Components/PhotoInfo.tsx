@@ -1,56 +1,47 @@
+import { useState } from "react";
 import PhotoItem from "./PhotoItem";
+import GalleryModal from "./GalleryModal";
+import data from "../Data/images.json";
 
-const PhotoInfo = () => (
-  <div className="flex flex-wrap flex-1 justify-evenly items-stretch g-3 mt-32">
-    <PhotoItem
-      src="../../public/image1.jpg"
-      datetime="06/06/2023 12:23:05"
-      channel="Kênh 1"
-      location="Tỉnh lộ 747, P. Uyên Hưng..."
-    ></PhotoItem>
-    <PhotoItem
-      src="../../public/image2.jpg"
-      datetime="06/06/2023 12:23:05"
-      channel="Kênh 1"
-      location="Tỉnh lộ 747, P. Uyên Hưng..."
-    ></PhotoItem>
-    <PhotoItem
-      src="../../public/image3.jpg"
-      datetime="06/06/2023 12:23:05"
-      channel="Kênh 1"
-      location="Tỉnh lộ 747, P. Uyên Hưng..."
-    ></PhotoItem>
-    <PhotoItem
-      src="../../public/image4.jpg"
-      datetime="06/06/2023 12:23:05"
-      channel="Kênh 1"
-      location="Tỉnh lộ 747, P. Uyên Hưng..."
-    ></PhotoItem>
-    <PhotoItem
-      src="../../public/image1.jpg"
-      datetime="06/06/2023 12:23:05"
-      channel="Kênh 1"
-      location="Tỉnh lộ 747, P. Uyên Hưng..."
-    ></PhotoItem>
-    <PhotoItem
-      src="../../public/image2.jpg"
-      datetime="06/06/2023 12:23:05"
-      channel="Kênh 1"
-      location="Tỉnh lộ 747, P. Uyên Hưng..."
-    ></PhotoItem>
-    <PhotoItem
-      src="../../public/image3.jpg"
-      datetime="06/06/2023 12:23:05"
-      channel="Kênh 1"
-      location="Tỉnh lộ 747, P. Uyên Hưng..."
-    ></PhotoItem>
-    <PhotoItem
-      src="../../public/image4.jpg"
-      datetime="06/06/2023 12:23:05"
-      channel="Kênh 1"
-      location="Tỉnh lộ 747, P. Uyên Hưng..."
-    ></PhotoItem>
-  </div>
-);
+const PhotoInfo = () => {
+  type photoGallery = {
+    src: string;
+    id: string;
+    datetime: string;
+    channel: string;
+    location: string;
+  };
+
+  const [modal, setModal] = useState<boolean>(false);
+  const [currentPhoto, setCurrentPhoto] = useState<photoGallery | null>(null);
+
+  const handleImageClick = (photo: photoGallery) => {
+    setCurrentPhoto(photo);
+    setModal(true);
+  };
+
+  const turnOffModal = () => {
+    setModal(false);
+  };
+  return (
+    <>
+      {modal && <GalleryModal onClick={turnOffModal} currentPhoto={currentPhoto} />}
+
+      <div className="flex flex-wrap justify-start gap-3 mt-32 p-2">
+        {data.map((photo, index) => (
+          <div onClick={() => handleImageClick(photo)}>
+            <PhotoItem
+              key={index}
+              src={photo.src}
+              datetime={photo.datetime}
+              channel={photo.channel}
+              location={photo.location}
+            ></PhotoItem>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
 
 export default PhotoInfo;

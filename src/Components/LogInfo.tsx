@@ -1,4 +1,5 @@
 import LogItem from "./LogItem";
+
 const LogInfo = () => (
   <div className="mt-32">
     <LogItem

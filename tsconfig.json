@@ -23,6 +23,6 @@
     "noImplicitAny":true,
     "strictNullChecks":true
   },
-  "include": ["src"],
+  "include": ["src", "public/ModalIcons"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

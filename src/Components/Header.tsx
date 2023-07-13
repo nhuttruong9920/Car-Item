@@ -9,7 +9,7 @@ import { ReactComponent as SolidRoutingIcon } from "../../public/SolidRoutingIco
 import { ReactComponent as SolidShareIcon } from "../../public/SolidShareIcon.svg";
 import { ReactComponent as SolidMapIcon } from "../../public/SolidMapIcon.svg";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const Header = () => {
     setActive(carButtonId);
     navigate("/errors");
   };
-  console.log(active);
+
   return (
     <>
       <div className="car-detail-header rounded-t-xl flex flex-col mb-2 fixed w-full top-0">
@@ -60,6 +60,7 @@ const Header = () => {
         </div>
         <div className="flex gap-2 px-2">
           <div
+            onClick={() => handleClickCarInfo("carButton")}
             className={`p-2 ${
               active === "carButton" ? "bg-gray-50 rounded-t" : ""
             }`}
@@ -67,7 +68,6 @@ const Header = () => {
             <SolidCarIcon
               fill={active === "carButton" ? "#0066FF" : "white"}
               className="w-5 h-5"
-              onClick={() => handleClickCarInfo("carButton")}
             ></SolidCarIcon>
           </div>
           <div
@@ -84,25 +84,25 @@ const Header = () => {
             <SolidChartBarIcon></SolidChartBarIcon>
           </div>
           <div
+            onClick={() => handleClickLogInfo("logButton")}
             className={`p-2 relative ${
               active === "logButton" ? "bg-gray-50 rounded-t" : ""
             }`}
           >
             <ListBulletIcon
               stroke={active === "logButton" ? "#0066FF" : "white"}
-              onClick={() => handleClickLogInfo("logButton")}
             ></ListBulletIcon>
             <div className="badge rounded-full w-4 h-4 flex justify-center items-center absolute  top-0 right-0">
               12
             </div>
           </div>
           <div
+            onClick={() => handleClickErrorInfo("errorButton")}
             className={`p-2 relative ${
               active === "errorButton" ? "bg-gray-50 rounded-t" : ""
             }`}
           >
             <SolidExclamationIcon
-              onClick={() => handleClickErrorInfo("errorButton")}
               fill={active === "errorButton" ? "#0066FF" : "white"}
             ></SolidExclamationIcon>
             <div className="badge rounded-full w-4 h-4 flex justify-center items-center absolute  top-0 right-0">
